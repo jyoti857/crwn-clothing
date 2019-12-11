@@ -1,5 +1,5 @@
-import { TOGGLE_CART_HIDDEN, ADD_ITEM } from "../constants"
-import { addItemToCart } from "./cart-uitls"
+import { TOGGLE_CART_HIDDEN, ADD_ITEM, REMOVE_ITEM, REMOVE_ONE_ITEM } from "../constants"
+import { addItemToCart, removeItemFromCart } from "./cart-uitls"
 
 
 const initialState = {
@@ -19,6 +19,18 @@ const cartReducer = (state = initialState, action) => {
             return{
                 ...state, 
                 cartItems:addItemToCart(state.cartItems, action.payload)
+            }
+        }
+        case REMOVE_ITEM :{
+            return {
+                ...state,
+                cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
+            }
+        }
+        case REMOVE_ONE_ITEM:{
+            return{
+                ...state,
+                cartItems: removeItemFromCart(state.cartItems, action.payload)
             }
         }
         default: return state;
