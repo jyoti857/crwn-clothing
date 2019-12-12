@@ -1,57 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './directory.scss';
 import {MenuItems} from '../menu-items';
+import {connect} from 'react-redux';
+import { selectDirectorySections } from '../../redux/directory/directory-selectors';
 
-class Directory extends Component{
-    constructor(){
-        super();
-        this.state = {
-            sections:  [
-                {
-                  title: 'hats',
-                  imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-                  id: 1,
-                  linkUrl: 'shop/hats'
-                },
-                {
-                  title: 'jackets',
-                  imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-                  id: 2,
-                  linkUrl: 'shop/jackets'
-                },
-                {
-                  title: 'sneakers',
-                  imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-                  id: 3,
-                  linkUrl: 'shop/sneakers'
-                },
-                {
-                  title: 'womens',
-                  imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-                  size: 'large',
-                  id: 4,
-                  linkUrl: 'shop/womens'
-                },
-                {
-                  title: 'mens',
-                  imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-                  size: 'large',
-                  id: 5,
-                  linkUrl: 'shop/mens'
-                }
-              ]
-        }
-    }
-    render(){
-        const {sections} = this.state;
-        return(
-            <div className = 'directory-menu'>
-                {sections.map(({title, id, imageUrl, size}) => {
-                    return<MenuItems  key = {id} title={title} imageUrl={imageUrl} size={size}/>
-                })}
-            </div>
-        )
-    }
+// const Directory =(props, {sections}) =>{
+  const Directory = (props) =>{
+   console.log("*$#($*#((FROM Directory --->", props);
+    return(
+        <div className = 'directory-menu'>
+            {props.sections.map(({title, id, imageUrl, size}) => {
+                return<MenuItems  key = {id} title={title} imageUrl={imageUrl} size={size}/>
+            })}
+        </div>
+    )
 }
+const mapStateToProps = state =>({
+  sections: selectDirectorySections(state)
+})
 
-export default Directory;
+export default connect(mapStateToProps, null)(Directory);
