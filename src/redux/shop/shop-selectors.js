@@ -9,7 +9,10 @@ import {createSelector} from 'reselect';
 //     mens: 5
 // }
 
-const selectShop = state => state.shop;
+const selectShop = state => {
+    console.log("******************************", state);
+    return state.shop;
+}
 
 const selectCollection = createSelector(
     selectShop,
@@ -25,7 +28,7 @@ const selectCollectionById = collectionParam => createSelector(
 
 const selectCollectionforPrerview = createSelector(
     selectCollection,
-    collections => Object.keys(collections).map(key => collections[key]) // in short get the value of each key 
+    collections => collections ?Object.keys(collections).map(key => collections[key]):[] // in short get the value of each key 
 )
 
 

@@ -1,0 +1,1 @@
+export const UPDATE_COLLECTION = '@firebase/update-colletion';

@@ -5,14 +5,17 @@ import ShopPage from './pages/shoppage';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import Header from './Component/header';
 import SigninAndSignupPage from './pages/sign-in-and-sign-up-page';
-import { auth, createUserProfileDocument } from './firebase/firebase-utils';
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase-utils';
 import { setCurrentUser } from './redux/user/user-action';
 import {connect} from 'react-redux';
 import CheckoutPage from './pages/checkoutpage';
+import { selectCollectionforPrerview } from './redux/shop/shop-selectors';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/user/user-selectors';
 
 const App = props =>{
   // const [currentUser, setCurrentUser] = useState(null);
-  const {setCurrentUser, currentUser} = props;
+  const {setCurrentUser, currentUser, collectionArray} = props;
   let unsubscribeFromAuth = null;
 
   useEffect(() => {
@@ -28,6 +31,7 @@ const App = props =>{
       setCurrentUser(user); // if no user present the user set to be null here, once user logs out then 
       // this user would be null and no user be in state
     }
+    addCollectionAndDocuments('collections', collectionArray);
     });
   }, []);
   
@@ -52,8 +56,11 @@ const App = props =>{
     </div>
   );
 }
-const mapStateToProps = ({user}) => ({
-  currentUser : user.currentUser,
+// const mapStateToProps = ({user}) => ({
+  // currentUser : user.currentUser,
+  const mapStateToProps = createStructuredSelector({
+  collectionArray: selectCollectionforPrerview,
+  currentUser: selectCurrentUser
 })
 const mapDispatchToProps = dispatch => ({
   setCurrentUser : user => dispatch(setCurrentUser(user)) 
