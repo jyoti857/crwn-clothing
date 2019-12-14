@@ -1,8 +1,8 @@
-import SHOP_DATA from "./shop.data";
+// import SHOP_DATA from "./shop.data";
 import { UPDATE_COLLECTION } from "./constants";
 
 const initialState = {
-    shopData: SHOP_DATA,
+    shopData: null,
 }
 
 const shopReducer = (state = initialState, action) =>{
@@ -11,7 +11,7 @@ const shopReducer = (state = initialState, action) =>{
             console.log("**** from shop reducer case 1 ---> ", action.payload)
             return{
                 ...state, 
-                // shopData: action.payload
+                shopData: action.payload
             }
         }
         default: {

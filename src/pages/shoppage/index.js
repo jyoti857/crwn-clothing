@@ -16,7 +16,7 @@ import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/fireb
             this.unsubscribedFromSnapshot = collectionRef.onSnapshot( async snapShot =>{
                 const collectionMap = convertCollectionsSnapshotToMap(snapShot);
                 updateCollection(collectionMap);
-                console.log("(*(@*#(@*#(@#* ---> from shop page --->  ", snapShot)
+                console.log("(*(@*#(@*#(@#* ---> from shop page --->  ", collectionMap)
             })
         }
         render(){

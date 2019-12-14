@@ -22,13 +22,13 @@ const selectCollection = createSelector(
 const selectCollectionById = collectionParam => createSelector(
     selectCollection, 
     // collection => collection.find(collec => collec.id === collection_id_map[collectionParam]) 
-    collection => collection[collectionParam]
+    collection => collection? collection[collectionParam] : null
 )
 
 
 const selectCollectionforPrerview = createSelector(
     selectCollection,
-    collections => collections ?Object.keys(collections).map(key => collections[key]):[] // in short get the value of each key 
+    collections => collections?Object.keys(collections).map(key => collections[key]): []// in short get the value of each key 
 )
 
 
