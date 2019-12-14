@@ -22,22 +22,22 @@ const App = props =>{
   } = props;
   let unsubscribeFromAuth = null;
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    unsubscribeFromAuth = auth.onAuthStateChanged( async user => {
-      if(user){
-      const userRef = await createUserProfileDocument(user);
-      userRef.onSnapshot(snapShot => {
-        console.log(snapShot);
-        setCurrentUser({id: snapShot.id, ...snapShot.data()});
-      })
-    }else{
-      setCurrentUser(user); // if no user present the user set to be null here, once user logs out then 
-      // this user would be null and no user be in state
-    }
-    // addCollectionAndDocuments('collections', collectionArray);
-    });
-  }, []);
+  // useEffect(() => {
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   unsubscribeFromAuth = auth.onAuthStateChanged( async user => {
+  //     if(user){
+  //     const userRef = await createUserProfileDocument(user);
+  //     userRef.onSnapshot(snapShot => {
+  //       console.log(snapShot);
+  //       setCurrentUser({id: snapShot.id, ...snapShot.data()});
+  //     })
+  //   }else{
+  //     setCurrentUser(user); // if no user present the user set to be null here, once user logs out then 
+  //     // this user would be null and no user be in state
+  //   }
+  //   // addCollectionAndDocuments('collections', collectionArray);
+  //   });
+  // }, []);
   
 
   // ComponentWillUnmount 
