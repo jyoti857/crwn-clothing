@@ -31,5 +31,10 @@ const selectCollectionforPrerview = createSelector(
     collections => collections?Object.keys(collections).map(key => collections[key]): []// in short get the value of each key 
 )
 
+export const selectIsCollectionFetching = createSelector(
+    selectCollection,
+    isFetching => isFetching.isFetching
+)
+
 
 export {selectCollection, selectCollectionById, selectCollectionforPrerview};

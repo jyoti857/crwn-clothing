@@ -16,7 +16,7 @@ export const fetchCollectionsFailure = errorMessage =>({
     type: FETCH_COLLECTIONS_FAILURE,
     payload: errorMessage
 }); 
-export const fetchCollectionStart = ({
+export const fetchCollectionStart = () => ({
     type: FETCH_COLLECTIONS_START
 })
 
