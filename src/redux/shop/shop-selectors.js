@@ -33,7 +33,7 @@ const selectCollectionforPrerview = createSelector(
 
 export const selectIsCollectionFetching = createSelector(
     selectCollection,
-    isFetching => isFetching.isFetching
+    isFetching => isFetching  ?  isFetching.isFetching : {},
 )
 
 

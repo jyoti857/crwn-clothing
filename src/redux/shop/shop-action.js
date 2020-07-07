@@ -1,4 +1,4 @@
-import { UPDATE_COLLECTION, FETCH_COLLECTIONS_FAILURE, FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS } from "./constants";
+import { UPDATE_COLLECTION, FETCH_COLLECTIONS_FAILURE, FETCH_COLLECTIONS_START,FETCH_COLLECTIONS_START_SAGA, FETCH_COLLECTIONS_SUCCESS } from "./constants";
 import { firestore, convertCollectionsSnapshotToMap } from "../../firebase/firebase-utils";
 
 
@@ -16,8 +16,14 @@ export const fetchCollectionsFailure = errorMessage =>({
     type: FETCH_COLLECTIONS_FAILURE,
     payload: errorMessage
 }); 
-export const fetchCollectionStart = () => ({
+export const fetchCollectionStartAction = () => ({
     type: FETCH_COLLECTIONS_START
+})
+
+// action for sagas
+export const fetchCollectionsStartAsyncSaga = () => ({
+    type: FETCH_COLLECTIONS_START_SAGA
+
 })
 
 
@@ -25,7 +31,7 @@ export const fetchCollectionStart = () => ({
 export const fetchCollectionsStartAsync = () => {
     return dispatch =>{
         const collectionRef = firestore.collection('collections');
-        dispatch(fetchCollectionStart());
+        dispatch(fetchCollectionStartAction());
         collectionRef
             .get()
             .then(snapshot => {

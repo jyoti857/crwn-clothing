@@ -3,10 +3,12 @@ import CollectionOverview from '../../Component/collection-overview';
 import {Route} from 'react-router-dom';
 import CollectionPage from '../collection';
 import {connect} from 'react-redux';
-import {  fetchCollectionsStartAsync } from '../../redux/shop/shop-action';
+// import {  fetchCollectionsStartAsync } from '../../redux/shop/shop-action';
 // import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase-utils';
 import { selectIsCollectionFetching } from '../../redux/shop/shop-selectors';
 import { createStructuredSelector } from 'reselect';
+import { fetchCollectionsStart } from '../../redux/shop/shop-sagas';
+import { fetchCollectionStartAction, fetchCollectionsStartAsyncSaga } from '../../redux/shop/shop-action';
 
 // const ShopPage = ({match}) => {
     class ShopPage extends React.Component{
@@ -20,8 +22,8 @@ import { createStructuredSelector } from 'reselect';
             //     updateCollection(collectionMap);
             //     console.log("(*(@*#(@*#(@#* ---> from shop page --->  ", collectionMap)
             // })
-            const { fetchCollectionStartAsync} = this.props;
-            fetchCollectionStartAsync();
+            const { fetchCollectionsStart } = this.props;
+            fetchCollectionsStart();
 
         }
         render(){
@@ -42,7 +44,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchCollectionStartAsync: () => dispatch(fetchCollectionsStartAsync())
+    fetchCollectionsStart: () => dispatch(fetchCollectionsStartAsyncSaga())
 });
 // const mapDispatchToProps = dispatch => ({
 //     updateCollection: updateCollection => dispatch(updateCollections(updateCollection)),
