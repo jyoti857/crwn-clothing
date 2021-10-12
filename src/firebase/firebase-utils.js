@@ -5,8 +5,8 @@ import 'firebase/auth';
 const config = {
         apiKey: "",
         authDomain: "crown-db-3fb64.firebaseapp.com",
-        databaseURL: "https://crown-db-3fb64.firebaseio.com",
-        projectId: "crown-db-3fb64",
+        databaseURL: "",
+        projectId: "",
         storageBucket: "crown-db-3fb64.appspot.com",
         messagingSenderId: "191270543034",
         appId: "",
